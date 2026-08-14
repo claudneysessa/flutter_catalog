@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart' show AdSize;
 import 'constants.dart';
 import 'my_app_routes.dart';
 
@@ -88,9 +87,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // ! The banner used to sit at the end of each list, where the adaptive size
-    // ! rendered a full 728x90 leaderboard on tablets. It is now a single thin
-    // ! 320x50 strip pinned right above the bottom navigation bar.
+    // ! The banner used to sit at the end of each list. It is now a single
+    // ! full-width strip pinned right above the bottom navigation bar.
     final basicDemos = <Widget>[
       for (final MyRouteGroup group in kMyAppRoutesBasic)
         _myRouteGroupToExpansionTile(group),
@@ -122,7 +120,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const MyBannerAd(adSize: AdSize.banner),
+          // ! Anchored adaptive size: as wide as the screen, ~50dp tall.
+          const MyBannerAd(),
           BottomNavigationBar(
             items: _bottmonNavBarItems,
             currentIndex: ref.watch(mySettingsProvider).currentTabIdx,

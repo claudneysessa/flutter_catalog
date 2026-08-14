@@ -107,11 +107,19 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
   @override
   Widget build(BuildContext context) {
     if (_bannerAd != null && _adLoaded) {
-      return Container(
-        width: _bannerAd!.size.width.toDouble(),
+      // ! Full-width strip: the container spans the whole screen and the ad is
+      // ! centered in it, so a creative narrower than the screen still reads as
+      // ! one band instead of a floating box.
+      return SizedBox(
+        width: double.infinity,
         height: _bannerAd!.size.height.toDouble(),
-        alignment: Alignment.center,
-        child: AdWidget(ad: _bannerAd!),
+        child: Center(
+          child: SizedBox(
+            width: _bannerAd!.size.width.toDouble(),
+            height: _bannerAd!.size.height.toDouble(),
+            child: AdWidget(ad: _bannerAd!),
+          ),
+        ),
       );
     } else {
       return widget.placeholder;
