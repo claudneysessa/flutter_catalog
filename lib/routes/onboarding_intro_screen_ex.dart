@@ -13,6 +13,62 @@ class IntroductionScreenExample extends StatelessWidget {
         ),
       );
 
+  /// ! Kept in the project but no longer part of the onboarding flow: the page
+  /// ! was almost empty (just the app icon and one line). Add it back to
+  /// ! [introPages] to restore it.
+  static PageViewModel get welcomePage => PageViewModel(
+        //! The title/body can either be strings or widgets.
+        titleWidget: kAppIcon,
+        body: 'Welcome to the Flutter Catalog app!',
+      );
+
+  /// ! The "Enjoy!" page used to close the flow; it now opens it, so that the
+  /// ! first thing the user sees already carries the links.
+  static List<PageViewModel> get introPages => [
+        PageViewModel(
+          title: 'Enjoy!',
+          bodyWidget: Column(
+            children: [
+              const Text(
+                  'Explore the demos and learn Flutter anywhere as you go!\n'
+                  'And you are more than welcome to contribute to this open-source app :)'),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.code),
+                  title: const Text('Source code on GitHub'),
+                  onTap: () => url_launcher.launchUrl(Uri.parse(GITHUB_URL)),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.bug_report),
+                  title: const Text('Report issue on GitHub'),
+                  onTap: () =>
+                      url_launcher.launchUrl(Uri.parse('$GITHUB_URL/issues')),
+                ),
+              ),
+            ],
+          ),
+          image: Image.asset('res/images/dart-side.png'),
+        ),
+        PageViewModel(
+          title: 'Examples',
+          body:
+              'You can find many examples here, browse them by category, bookmark your favorite ones!',
+          image: Image.asset('screenshots/Screenshot_1541613187.png'),
+        ),
+        PageViewModel(
+          title: 'Preview tab',
+          body: 'Open and interact with the preview pages.',
+          image: Image.asset('screenshots/Screenshot_1541613193.png'),
+        ),
+        PageViewModel(
+          title: 'Code tab',
+          body: "Open the source code tab to see how it's implemented.",
+          image: Image.asset('screenshots/Screenshot_1541613197.png'),
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,54 +82,7 @@ class IntroductionScreenExample extends StatelessWidget {
         onDone: Navigator.of(context).pop,
         done: const Text("Done"),
         dotsFlex: 3,
-        pages: [
-          PageViewModel(
-            //! The title/body can either be strings or widgets.
-            titleWidget: kAppIcon,
-            body: 'Welcome to the Flutter Catalog app!',
-          ),
-          PageViewModel(
-            title: 'Examples',
-            body:
-                'You can find many examples here, browse them by category, bookmark your favorite ones!',
-            image: Image.asset('screenshots/Screenshot_1541613187.png'),
-          ),
-          PageViewModel(
-            title: 'Preview tab',
-            body: 'Open and interact with the preview pages.',
-            image: Image.asset('screenshots/Screenshot_1541613193.png'),
-          ),
-          PageViewModel(
-            title: 'Code tab',
-            body: "Open the source code tab to see how it's implemented.",
-            image: Image.asset('screenshots/Screenshot_1541613197.png'),
-          ),
-          PageViewModel(
-            title: 'Enjoy!',
-            bodyWidget: Column(
-              children: [
-                Text('Explore the demos and learn Flutter anywhere as you go!\n'
-                    'And you are more than welcome to contribute to this open-source app :)'),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.code),
-                    title: Text('Source code on GitHub'),
-                    onTap: () => url_launcher.launchUrl(Uri.parse(GITHUB_URL)),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: const Icon(Icons.bug_report),
-                    title: const Text('Report issue on GitHub'),
-                    onTap: () =>
-                        url_launcher.launchUrl(Uri.parse('$GITHUB_URL/issues')),
-                  ),
-                ),
-              ],
-            ),
-            image: Image.asset('res/images/dart-side.png'),
-          ),
-        ],
+        pages: introPages,
       ),
     );
   }
