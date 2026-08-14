@@ -1,7 +1,9 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// ! Since riverpod 3.x, `StateNotifierProvider` lives in the `legacy` library.
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:widget_with_codeview/widget_with_codeview.dart';
 
 import 'data/my_api_state.dart';

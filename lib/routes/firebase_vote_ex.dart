@@ -8,7 +8,7 @@ typedef JsonMap = Map<String, dynamic>;
 
 // NOTE: to add firebase support, first go to firebase console, generate the
 // firebase json file, and add configuration lines in the gradle files.
-// C.f. this commit: https://github.com/X-Wei/flutter_catalog/commit/48792cbc0de62fc47e0e9ba2cd3718117f4d73d1.
+// C.f. the repository: https://github.com/claudneysessa/flutter_catalog.
 
 // Adapted from the flutter firestore "babyname voter" codelab:
 // https://codelabs.developers.google.com/codelabs/flutter-firebase/#0

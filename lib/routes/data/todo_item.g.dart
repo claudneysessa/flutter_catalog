@@ -8,7 +8,7 @@ part of 'todo_item.dart';
 
 class TodoItemAdapter extends TypeAdapter<TodoItem> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   TodoItem read(BinaryReader reader) {
@@ -17,9 +17,9 @@ class TodoItemAdapter extends TypeAdapter<TodoItem> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TodoItem(
-      id: fields[0] as int?,
+      id: (fields[0] as num?)?.toInt(),
       content: fields[1] as String,
-      isDone: fields[2] as bool,
+      isDone: fields[2] == null ? false : fields[2] as bool,
       createdAt: fields[3] as DateTime?,
     );
   }

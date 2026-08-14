@@ -15,9 +15,14 @@ class SharePlusExample extends StatelessWidget {
       children: [
         ElevatedButton.icon(
           onPressed: () async {
-            final result = await Share.shareWithResult(
-              'Check out this app: https://github.com/x-wei/flutter_catalog',
-              subject: 'Flutter-learning app!',
+            // ! Since share_plus 10.x the static `Share.*` helpers were replaced
+            // ! by `SharePlus.instance.share(ShareParams(...))`.
+            final result = await SharePlus.instance.share(
+              ShareParams(
+                text:
+                    'Check out this app: https://github.com/claudneysessa/flutter_catalog',
+                subject: 'Flutter-learning app!',
+              ),
             );
             // ignore: use_build_context_synchronously
             ScaffoldMessenger.of(context).showSnackBar(
@@ -35,10 +40,12 @@ class SharePlusExample extends StatelessWidget {
             if (!await File(path).exists()) {
               await _copyAssetToFile('res/images/app_icon.png', path);
             }
-            Share.shareXFiles([
-              XFile(path),
-              // !Or we can use `XFile.fromData(bytes)`
-            ]);
+            await SharePlus.instance.share(
+              ShareParams(files: [
+                XFile(path),
+                // !Or we can use `XFile.fromData(bytes)`
+              ]),
+            );
           },
           icon: Icon(Icons.file_copy),
           label: Text('Share File'),

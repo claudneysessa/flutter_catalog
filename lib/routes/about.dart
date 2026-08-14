@@ -31,6 +31,42 @@ class MyAboutRoute extends StatelessWidget {
     ),
   ];
 
+  // ! Credits section: original author + maintainer of the 2026 revival.
+  static final List<Widget> kCreditsListTiles = <Widget>[
+    const ListTile(
+      dense: true,
+      title: Text(
+        'Credits',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+    ),
+    ListTile(
+      leading: const Icon(Icons.person_outline),
+      title: const Text('Original author: $ORIGINAL_AUTHOR'),
+      subtitle: const Text(ORIGINAL_AUTHOR_SITE),
+      onTap: () => url_launcher.launchUrl(Uri.parse(ORIGINAL_AUTHOR_SITE)),
+    ),
+    ListTile(
+      leading: const Icon(Icons.build_circle_outlined),
+      title: const Text('2026 revival: $MAINTAINER_NAME'),
+      subtitle: const Text('$MAINTAINER_ROLE · $MAINTAINER_GITHUB_URL'),
+      onTap: () => url_launcher.launchUrl(Uri.parse(MAINTAINER_GITHUB_URL)),
+    ),
+    ListTile(
+      leading: const Icon(Icons.business_center_outlined),
+      title: const Text('LinkedIn'),
+      subtitle: const Text(MAINTAINER_LINKEDIN_URL),
+      onTap: () => url_launcher.launchUrl(Uri.parse(MAINTAINER_LINKEDIN_URL)),
+    ),
+    ListTile(
+      leading: const Icon(Icons.mail_outline),
+      title: const Text('Contact the maintainer'),
+      subtitle: const Text(MAINTAINER_EMAIL),
+      onTap: () =>
+          url_launcher.launchUrl(Uri.parse('mailto:$MAINTAINER_EMAIL')),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final header = ListTile(
@@ -45,6 +81,9 @@ class MyAboutRoute extends StatelessWidget {
             applicationName: APP_NAME,
             applicationVersion: kPackageInfo.version,
             applicationIcon: kAppIcon,
+            applicationLegalese:
+                'Originally created by $ORIGINAL_AUTHOR.\n'
+                '2026 revival maintained by $MAINTAINER_NAME.',
             children: <Widget>[const Text(APP_DESCRIPTION)],
           );
         },
@@ -65,6 +104,8 @@ class MyAboutRoute extends StatelessWidget {
           title: const Text('My Other Apps'),
           onTap: () => Navigator.of(context).pushNamed('/growth_my_other_apps'),
         ),
+        const Divider(),
+        ...kCreditsListTiles,
       ],
     );
   }

@@ -81,3 +81,6 @@ ios/Flutter/flutter_export_environment.sh
 .fvm/flutter_sdk
 .firebase/*.cache
 macos/Flutter/ephemeral/**
+
+# Flutter ephemeral iOS tooling files
+ios/Flutter/ephemeral/

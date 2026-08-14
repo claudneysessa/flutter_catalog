@@ -59,7 +59,10 @@ class _GraphViewExState extends State<GraphViewEx> {
         ..strokeWidth = 4,
     );
 
-    final algo = FruchtermanReingoldAlgorithm(iterations: this._iterations)
+    // ! Since graphview 1.x the tuning knobs moved into a configuration object.
+    final algo = FruchtermanReingoldAlgorithm(
+      FruchtermanReingoldConfiguration(iterations: this._iterations),
+    )
           ..rand = Random(/*seed=*/ 0) // For deterministic rendering
         ;
 

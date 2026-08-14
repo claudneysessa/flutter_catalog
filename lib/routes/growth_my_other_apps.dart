@@ -1,99 +1,96 @@
-import 'dart:io';
-
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../constants.dart';
+
+/// ! The original app advertised the original author's own apps. Since this is
+/// ! the 2026 revival, the list now points to the maintainer's own projects.
 class MyOtherAppsExample extends StatelessWidget {
   const MyOtherAppsExample({super.key});
+
+  static const _projects = <_OtherProject>[
+    _OtherProject(
+      title: 'Flutter Playground',
+      subtitle: 'Playground app with examples to learn and tinker with Flutter.',
+      icon: Icons.science_outlined,
+      repoUrl: 'https://github.com/claudneysessa/flutter-playground',
+      siteUrl: 'https://claudneysessa.github.io/flutter-playground/',
+    ),
+    _OtherProject(
+      title: 'Flutter UI Challenges',
+      subtitle: 'A collection of UI challenges implemented in Flutter.',
+      icon: Icons.palette_outlined,
+      repoUrl: 'https://github.com/claudneysessa/flutter-ui-challenges',
+      siteUrl: 'https://claudneysessa.github.io/flutter-ui-challenges/',
+    ),
+    _OtherProject(
+      title: 'PayGO SDK',
+      subtitle:
+          'Flutter SDK for commercial automation with PayGO Integrado (URI + Android Intent).',
+      icon: Icons.point_of_sale_outlined,
+      repoUrl: 'https://github.com/claudneysessa/paygo_sdk',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Divider(),
-        Card(
-          child: Column(
-            children: [
-              ListTile(
-                  leading: Image.asset('res/images/xydocs-flutter-icon.png'),
-                  title: Text('Flutter Cookbook'),
-                  subtitle:
-                      Text('Official Flutter cookbooks, for offline reading.')),
-              ListTile(
-                title: Text('Watch Youtube video'),
-                leading: Icon(CommunityMaterialIcons.youtube),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launchUrl(
-                  Uri.parse('https://www.youtube.com/watch?v=R8q-seYhUkY'),
+        const Divider(),
+        for (final project in _projects) ...[
+          Card(
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Icon(project.icon),
+                  title: Text(project.title),
+                  subtitle: Text(project.subtitle),
                 ),
-              ),
-              ListTile(
-                leading: Icon(Icons.shop),
-                title: Text('View in store'),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launchUrl(
-                  Uri.parse(Platform.isIOS
-                      ? 'https://apps.apple.com/app/id1605475549'
-                      : 'https://play.google.com/store/apps/details?id=io.github.xydocs.flutter_offline_doc'),
+                ListTile(
+                  leading: const Icon(CommunityMaterialIcons.github),
+                  title: const Text('View on GitHub'),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () => launchUrl(Uri.parse(project.repoUrl)),
                 ),
-              ),
-            ],
+                if (project.siteUrl != null)
+                  ListTile(
+                    leading: const Icon(Icons.open_in_browser),
+                    title: const Text('Open the live demo'),
+                    trailing: const Icon(Icons.open_in_new),
+                    onTap: () => launchUrl(Uri.parse(project.siteUrl!)),
+                  ),
+              ],
+            ),
           ),
-        ),
-        Divider(),
+          const Divider(),
+        ],
         Card(
-          child: Column(
-            children: [
-              ListTile(
-                leading: Image.asset('res/images/xydocs-cpp-icon.png'),
-                title: Text('C++ Tip of the Week'),
-                subtitle: Text('C++ best practices from Google.'),
-              ),
-              ListTile(
-                title: Text('Watch Youtube video'),
-                leading: Icon(CommunityMaterialIcons.youtube),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launchUrl(
-                  Uri.parse('https://www.youtube.com/watch?v=i97c4d0Gaz8'),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.shop),
-                title: Text('View in store'),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launchUrl(
-                  Uri.parse(Platform.isIOS
-                      ? 'https://apps.apple.com/us/app/c-tip-of-the-week/id1617459992'
-                      : 'https://play.google.com/store/apps/details?id=io.github.xydocs.cpp_offline_doc'),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Divider(),
-        Card(
-          child: Column(
-            children: [
-              ListTile(
-                leading: Image.asset('res/images/xymemo-icon.png'),
-                title: Text('XYmemo'),
-                subtitle: Text('Learn German vocabulary (in beta).'),
-              ),
-              ListTile(
-                leading: Icon(Icons.shop),
-                title: Text('View in store'),
-                trailing: Icon(Icons.open_in_new),
-                onTap: () => launchUrl(
-                  Uri.parse(Platform.isIOS
-                      ? 'https://apps.apple.com/us/developer/xing-wei/id1582381134'
-                      : 'https://play.google.com/store/apps/details?id=io.github.x_wei.xymemo'),
-                ),
-              ),
-            ],
+          child: ListTile(
+            leading: const Icon(Icons.person_outline),
+            title: const Text('All projects by $MAINTAINER_NAME'),
+            subtitle: const Text(MAINTAINER_GITHUB_URL),
+            trailing: const Icon(Icons.open_in_new),
+            onTap: () => launchUrl(Uri.parse(MAINTAINER_GITHUB_URL)),
           ),
         ),
       ],
     );
   }
+}
+
+class _OtherProject {
+  const _OtherProject({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.repoUrl,
+    this.siteUrl,
+  });
+
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final String repoUrl;
+  final String? siteUrl;
 }

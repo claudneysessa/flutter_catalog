@@ -6,10 +6,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../constants.dart';
 
-// !NOTE: prefer the flutterfire_ui package, see [FlutterFireLoginUiExample].
+// !NOTE: prefer the firebase_ui_auth package, see [FlutterFireLoginUiExample].
 // NOTE: to add firebase support, first go to firebase console, generate the
 // firebase json file, and add configuration lines in the gradle files.
-// C.f. this commit: https://github.com/X-Wei/flutter_catalog/commit/48792cbc0de62fc47e0e9ba2cd3718117f4d73d1.
+// C.f. the repository: https://github.com/claudneysessa/flutter_catalog.
 class FirebaseLoginExample extends StatefulWidget {
   const FirebaseLoginExample({super.key});
 
@@ -82,8 +82,8 @@ class _FirebaseLoginExampleState extends State<FirebaseLoginExample> {
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 100.0, horizontal: 50.0),
         children: <Widget>[
-          Text(
-              'NOTE: prefer the flutterfire_ui package, see `FlutterFireLoginUiExample`.'),
+          const Text(
+              'NOTE: prefer the firebase_ui_auth package, see `FlutterFireLoginUiExample`.'),
           statusText,
           googleLoginBtn,
           anonymousLoginBtn,

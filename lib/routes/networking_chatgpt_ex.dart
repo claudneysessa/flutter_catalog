@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'constants.dart';
 import 'package:flutter/material.dart';
-import 'package:material_buttonx/materialButtonX.dart';
 
 class ChatGptExample extends StatefulWidget {
   const ChatGptExample({Key? key}) : super(key: key);
@@ -15,20 +14,36 @@ class _ChatGptExampleState extends State<ChatGptExample> {
   /// text controller
   final _txtWord = TextEditingController();
 
-  late OpenAI openAI;
+  //! Null when no `OPENAI_TOKEN` dart-define was passed at build time: the SDK
+  //! throws `MissingTokenException` on an empty token.
+  OpenAI? openAI;
 
   ///t => translate
-  final tController = StreamController<CTResponse?>.broadcast();
+  ///! In chat_gpt_sdk 3.x `CTResponse` was renamed to `CompleteResponse`.
+  final tController = StreamController<CompleteResponse?>.broadcast();
 
   void _translateEngToThai() async {
+    final openAI = this.openAI;
+    if (openAI == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'No OpenAI key: rebuild with --dart-define=OPENAI_TOKEN=sk-...',
+          ),
+        ),
+      );
+      return;
+    }
     try {
       final request = CompleteText(
         prompt: "Translate this into portuguese : ${_txtWord.text}",
         maxTokens: 200,
-        model: 'gpt-3.5-turbo-instruct',
+        //! The model is now a `Model` object instead of a raw string.
+        model: Gpt3TurboInstruct(),
       );
 
-      openAI.onCompleteStream(request: request).asBroadcastStream().listen(
+      //! `onCompleteStream` was renamed to `onCompletionSSE`.
+      openAI.onCompletionSSE(request: request).asBroadcastStream().listen(
         (res) {
           tController.sink.add(res);
         },
@@ -42,24 +57,22 @@ class _ChatGptExampleState extends State<ChatGptExample> {
     }
   }
 
-  void modelDataList() async {
-    final model = await OpenAI.instance.build(token: "").listModel();
-  }
-
-  void engineList() async {
-    final engines = await OpenAI.instance.build(token: "").listEngine();
-  }
-
   @override
   void initState() {
-    openAI = OpenAI.instance.build(token: token, baseOption: HttpSetup(receiveTimeout: 6000), isLogger: true);
+    //! `isLogger` is now `enableLog`, and the timeouts are `Duration`s.
+    if (token.isNotEmpty) {
+      openAI = OpenAI.instance.build(
+        token: token,
+        baseOption: HttpSetup(receiveTimeout: const Duration(seconds: 6)),
+        enableLog: true,
+      );
+    }
     super.initState();
   }
 
   @override
   void dispose() {
     ///close stream complete text
-    openAI.close();
     tController.close();
     super.dispose();
   }
@@ -107,23 +120,33 @@ class _ChatGptExampleState extends State<ChatGptExample> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        // ! The `material_buttonx` package is unmaintained (it still reads the
+        // ! removed `TextTheme.headline6`), so we use a plain Flutter button.
         Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: MaterialButtonX(
-                message: "Translate",
-                height: 40.0,
-                width: 130.0,
-                color: Colors.blueAccent,
-                icon: Icons.translate,
-                iconSize: 18.0,
-                radius: 46.0,
-                onClick: () => _translateEngToThai())),
+          padding: const EdgeInsets.only(right: 16.0),
+          child: SizedBox(
+            height: 40.0,
+            width: 130.0,
+            child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(46.0),
+                ),
+              ),
+              icon: const Icon(Icons.translate, size: 18.0),
+              label: const Text('Translate'),
+              onPressed: _translateEngToThai,
+            ),
+          ),
+        ),
       ],
     );
   }
 
   Widget _resultCard(Size size) {
-    return StreamBuilder<CTResponse?>(
+    return StreamBuilder<CompleteResponse?>(
       stream: tController.stream,
       builder: (context, snapshot) {
         final text = snapshot.data?.choices.last.text ?? "Loading...";

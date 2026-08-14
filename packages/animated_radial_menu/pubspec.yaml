@@ -1,0 +1,26 @@
+name: animated_radial_menu
+description: Highly customizable complex radial animation without any boilerplate code.
+version: 0.0.1
+homepage: https://github.com/sonykurian96/animated-radial-menu
+
+publish_to: none
+
+# Vendored copy of the pub.dev package `animated_radial_menu` 0.0.1: upstream is
+# unmaintained and pins `font_awesome_flutter: ^9.1.0`, which no longer compiles
+# (it extends the now-final `IconData` class). Only the icon names changed here.
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+  flutter: ">=3.35.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  font_awesome_flutter: ^11.0.0
+  vector_math: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

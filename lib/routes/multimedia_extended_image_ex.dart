@@ -39,7 +39,9 @@ class _ExtendedImageExampleState extends State<ExtendedImageExample> {
             ElevatedButton.icon(
               label: const Text('Rotate left'),
               icon: const Icon(Icons.rotate_left),
-              onPressed: () => _editorKey.currentState?.rotate(right: false),
+              // ! Since extended_image 8.x, `rotate()` takes a `degree` instead
+              // ! of a `right` flag.
+              onPressed: () => _editorKey.currentState?.rotate(degree: -90),
             ),
             ElevatedButton.icon(
               label: const Text('Reset'),

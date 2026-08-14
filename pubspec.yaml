@@ -1,46 +1,44 @@
 name: flutter_catalog
 description: An app showcasing Flutter components, with side-by-side source code view.
 
-version: 3.7.0+98
+version: 4.0.0+99
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.9.0 <4.0.0"
+  flutter: ">=3.35.0"
 
 publish_to: none
 
 dependencies:
+  # ! Vendored: upstream pins the unmaintained font_awesome_flutter 9.x.
   animated_radial_menu:
+    path: packages/animated_radial_menu
   animated_text_kit:
   animations:
-  async: null
+  async:
   backdrop:
   badges:
   cached_network_image:
   community_charts_flutter:
-  chat_gpt_sdk: 2.0.0
-  material_buttonx:
-  cloud_firestore:
-  cloud_firestore_web:
+  chat_gpt_sdk: ^3.1.6
+  cloud_firestore: ^6.0.0
   community_material_icon:
   convex_bottom_bar:
   day_night_switcher:
   device_preview:
   device_preview_screenshot:
-  edge_detection:
   english_words:
   extended_image:
   feature_discovery:
   ffi:
-  firebase_analytics:
-  firebase_analytics_web:
-  firebase_auth:
-  firebase_auth_web:
-  firebase_core:
-  firebase_core_web:
-  firebase_crashlytics:
-  firebase_database:
-  firebase_storage:
-  firebase_storage_web:
+  firebase_analytics: ^12.0.0
+  firebase_auth: ^6.0.0
+  firebase_core: ^4.0.0
+  firebase_crashlytics: ^5.0.0
+  firebase_database: ^12.0.0
+  firebase_storage: ^13.0.0
+  firebase_ui_auth:
+  firebase_ui_oauth_google:
   fl_chart:
   flutter:
     sdk: flutter
@@ -48,30 +46,29 @@ dependencies:
   flutter_gallery_assets:
   flutter_heatmap_calendar:
   flutter_highlight:
-  flutter_markdown:
-  # flutter_quill:
+  flutter_markdown_plus:
   flutter_radar_chart:
   flutter_riverpod:
   flutter_slidable:
   flutter_state_notifier:
-  # flutter_webview_plugin: ^0.4.0
-  # flutter_webview_plugin_ios_android: ^0.3.13+12
   flutter_whatsnew:
     path: packages/flutter_whatsnew-master
-  flutterfire_ui:
   fluttertoast:
   freezed_annotation:
   google_fonts:
-  google_ml_kit:
+  # ! The `google_ml_kit` umbrella package bundles *every* ML Kit model
+  # ! (translate, digital ink, pose, entity extraction, ...) and inflated the
+  # ! release APK to 334MB. Only the four features used by the demo are pulled.
+  google_mlkit_barcode_scanning:
+  google_mlkit_face_detection:
+  google_mlkit_image_labeling:
+  google_mlkit_text_recognition:
   google_mobile_ads:
   google_sign_in:
   graphview:
-  heatmap_calendar:
-    git:
-      url: https://github.com/CouldI/flutter_heatmap_calendar.git
   hidable:
-  hive:
-  hive_flutter:
+  hive_ce:
+  hive_ce_flutter:
   http:
   image:
   image_picker:
@@ -106,15 +103,17 @@ dependencies:
   youtube_player_iframe:
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   build_runner:
   flutter_launcher_icons:
   flutter_native_splash:
-  freezed:
-  hive_generator:
+  freezed: ^3.0.0
+  hive_ce_generator:
   json_serializable:
   lint:
 
-# $ flutter pub run flutter_launcher_icons:main
+# $ dart run flutter_launcher_icons
 # Cf. https://pub.dev/packages/flutter_launcher_icons
 flutter_icons:
   android: "launcher_icon"
@@ -122,7 +121,7 @@ flutter_icons:
   remove_alpha_ios: true
   image_path: res/images/app_icon.png
 
-# $ flutter pub run flutter_native_splash:create
+# $ dart run flutter_native_splash:create
 # Cf. https://pub.dev/packages/flutter_native_splash
 flutter_native_splash:
   color: "#f6f6f6"

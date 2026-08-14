@@ -2,7 +2,12 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
+// ! We import the four individual ML Kit packages instead of the
+// ! `google_ml_kit` umbrella package, which would bundle every model.
+import 'package:google_mlkit_barcode_scanning/google_mlkit_barcode_scanning.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
+import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:transparent_image/transparent_image.dart'
     show kTransparentImage;
@@ -74,7 +79,7 @@ class _GoogleMLKitExampleState extends State<GoogleMLKitExample> {
     }
     String result = '';
     final InputImage inputImage = InputImage.fromFile(this._imageFile!);
-    final ImageLabeler imageLabeler = GoogleMlKit.vision.imageLabeler();
+    final ImageLabeler imageLabeler = ImageLabeler(options: ImageLabelerOptions());
     final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
     result += 'Detected ${labels.length} labels.\n';
     for (final ImageLabel label in labels) {
@@ -96,7 +101,7 @@ class _GoogleMLKitExampleState extends State<GoogleMLKitExample> {
     }
     String result = '';
     final InputImage inputImage = InputImage.fromFile(this._imageFile!);
-    final TextRecognizer textDetector = GoogleMlKit.vision.textRecognizer();
+    final TextRecognizer textDetector = TextRecognizer();
     final RecognizedText recognizedText =
         await textDetector.processImage(inputImage);
     final String text = recognizedText.text;
@@ -130,7 +135,7 @@ class _GoogleMLKitExampleState extends State<GoogleMLKitExample> {
     }
     String result = '';
     final InputImage inputImage = InputImage.fromFile(this._imageFile!);
-    final BarcodeScanner barcodeScanner = GoogleMlKit.vision.barcodeScanner();
+    final BarcodeScanner barcodeScanner = BarcodeScanner();
 
     final List<Barcode> barcodes =
         await barcodeScanner.processImage(inputImage);
@@ -161,7 +166,7 @@ class _GoogleMLKitExampleState extends State<GoogleMLKitExample> {
       enableClassification: true,
       enableTracking: true,
     );
-    final FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(options);
+    final FaceDetector faceDetector = FaceDetector(options: options);
     final List<Face> faces = await faceDetector.processImage(inputImage);
     result += 'Detected ${faces.length} faces.\n';
     for (final Face face in faces) {
@@ -213,7 +218,7 @@ class _GoogleMLKitExampleState extends State<GoogleMLKitExample> {
           ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: ButtonBar(
+          child: OverflowBar(
             children: <Widget>[
               ElevatedButton(
                 onPressed: this._imageLabelling,

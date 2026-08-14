@@ -36,7 +36,6 @@ import 'routes/charts_fl_bar_chart_ex.dart';
 import 'routes/charts_fl_line_chart_ex.dart';
 import 'routes/charts_fl_pie_chart_ex.dart';
 import 'routes/charts_graphview_ex.dart';
-import 'routes/charts_heatmap_calendar_ex.dart';
 import 'routes/charts_new_heatmap_calendar_ex.dart';
 import 'routes/charts_pie_chart_ex.dart';
 import 'routes/charts_radar_chart_ex.dart';
@@ -73,7 +72,6 @@ import 'routes/monetization_inline_banner_ad_ex.dart';
 import 'routes/monetization_interstitial_ad_ex.dart';
 import 'routes/monetization_rewarded_ad_ex.dart';
 import 'routes/monetization_user_purchases_ex.dart';
-import 'routes/multimedia_edge_detection_ex.dart';
 import 'routes/multimedia_extended_image_ex.dart';
 import 'routes/multimedia_image_picker_ex.dart';
 import 'routes/multimedia_image_plugin_ex.dart';
@@ -725,13 +723,6 @@ const kMyAppRoutesAdvanced = <MyRouteGroup>[
         title: 'Youtube Player',
         links: {'Pub': 'https://pub.dev/packages/youtube_player_iframe'},
       ),
-      MyRoute(
-        child: EdgeDetectionExample(),
-        sourceFilePath: 'lib/routes/multimedia_edge_detection_ex.dart',
-        title: 'Edge Detection',
-        description: 'Plugin to scan documents.',
-        links: {'Pub': 'https://pub.dev/packages/edge_detection'},
-      ),
     ],
   ),
   MyRouteGroup(
@@ -963,15 +954,9 @@ const kMyAppRoutesAdvanced = <MyRouteGroup>[
         links: {'pub.dev': 'https://pub.dev/packages/graphview'},
       ),
       MyRoute(
-        child: HeatmapCalendarExample(),
-        sourceFilePath: 'lib/routes/charts_heatmap_calendar_ex.dart',
-        title: 'Heatmap Calendar (deprecated)',
-        links: {'pub.dev': 'https://pub.dev/packages/heatmap_calendar'},
-      ),
-      MyRoute(
         child: NewHeatmapCalendarExample(),
         sourceFilePath: 'lib/routes/charts_new_heatmap_calendar_ex.dart',
-        title: 'Heatmap Calendar(new)',
+        title: 'Heatmap Calendar',
         links: {'pub.dev': 'https://pub.dev/packages/flutter_heatmap_calendar'},
       ),
       MyRoute(
@@ -1037,10 +1022,11 @@ const kMyAppRoutesAdvanced = <MyRouteGroup>[
       MyRoute(
         child: FlutterFireLoginUiExample(),
         sourceFilePath: 'lib/routes/firebase_flutterfire_loginui_ex.dart',
-        title: 'FlutterFire login UI',
-        description: 'Login/profile UI from FlutterFire, recommended.',
+        title: 'Firebase UI login',
+        description: 'Login/profile UI from Firebase UI Auth, recommended.',
         links: {
-          'Documentation': 'https://github.com/firebase/flutterfire/blob/master/packages/flutterfire_ui/doc/auth.md',
+          'Pub': 'https://pub.dev/packages/firebase_ui_auth',
+          'Documentation': 'https://firebase.google.com/docs/auth/flutter/firebaseui',
         },
       ),
       MyRoute(
@@ -1069,7 +1055,7 @@ const kMyAppRoutesAdvanced = <MyRouteGroup>[
         title: 'Google ML Kit',
         description: 'Image labelling, text OCR, barcode scan, face detection.',
         links: {
-          'pub.dev': 'https://pub.dev/packages/google_ml_kit',
+          'pub.dev': 'https://pub.dev/packages/google_mlkit_text_recognition',
           'MLKit doc': 'https://developers.google.com/ml-kit/vision/text-recognition',
         },
       ),

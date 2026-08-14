@@ -3,8 +3,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// ! Since riverpod 3.x, `StateProvider` lives in the `legacy` library.
+import 'package:flutter_riverpod/legacy.dart';
 
 import '../my_app_settings.dart';
 import 'firebase_flutterfire_loginui_ex.dart';

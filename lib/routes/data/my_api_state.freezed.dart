@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'my_api_state.dart';
 
@@ -7,408 +9,348 @@ part of 'my_api_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MyApiStateTearOff {
-  const _$MyApiStateTearOff();
-
-  SuccessState success(List<String> data) {
-    return SuccessState(
-      data,
-    );
-  }
-
-  ErrorState error(String errorMsg) {
-    return ErrorState(
-      errorMsg,
-    );
-  }
-
-  LoadingState loading() {
-    return LoadingState();
-  }
-}
-
-/// @nodoc
-const $MyApiState = _$MyApiStateTearOff();
-
 /// @nodoc
 mixin _$MyApiState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<String> data) success,
-    required TResult Function(String errorMsg) error,
-    required TResult Function() loading,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<String> data)? success,
-    TResult Function(String errorMsg)? error,
-    TResult Function()? loading,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SuccessState value) success,
-    required TResult Function(ErrorState value) error,
-    required TResult Function(LoadingState value) loading,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SuccessState value)? success,
-    TResult Function(ErrorState value)? error,
-    TResult Function(LoadingState value)? loading,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyApiState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MyApiState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MyApiStateCopyWith<$Res> {
-  factory $MyApiStateCopyWith(
-          MyApiState value, $Res Function(MyApiState) then) =
-      _$MyApiStateCopyWithImpl<$Res>;
+class $MyApiStateCopyWith<$Res>  {
+$MyApiStateCopyWith(MyApiState _, $Res Function(MyApiState) __);
+}
+
+
+/// Adds pattern-matching-related methods to [MyApiState].
+extension MyApiStatePatterns on MyApiState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SuccessState value)?  success,TResult Function( ErrorState value)?  error,TResult Function( LoadingState value)?  loading,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case SuccessState() when success != null:
+return success(_that);case ErrorState() when error != null:
+return error(_that);case LoadingState() when loading != null:
+return loading(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SuccessState value)  success,required TResult Function( ErrorState value)  error,required TResult Function( LoadingState value)  loading,}){
+final _that = this;
+switch (_that) {
+case SuccessState():
+return success(_that);case ErrorState():
+return error(_that);case LoadingState():
+return loading(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SuccessState value)?  success,TResult? Function( ErrorState value)?  error,TResult? Function( LoadingState value)?  loading,}){
+final _that = this;
+switch (_that) {
+case SuccessState() when success != null:
+return success(_that);case ErrorState() when error != null:
+return error(_that);case LoadingState() when loading != null:
+return loading(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<String> data)?  success,TResult Function( String errorMsg)?  error,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case SuccessState() when success != null:
+return success(_that.data);case ErrorState() when error != null:
+return error(_that.errorMsg);case LoadingState() when loading != null:
+return loading();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<String> data)  success,required TResult Function( String errorMsg)  error,required TResult Function()  loading,}) {final _that = this;
+switch (_that) {
+case SuccessState():
+return success(_that.data);case ErrorState():
+return error(_that.errorMsg);case LoadingState():
+return loading();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<String> data)?  success,TResult? Function( String errorMsg)?  error,TResult? Function()?  loading,}) {final _that = this;
+switch (_that) {
+case SuccessState() when success != null:
+return success(_that.data);case ErrorState() when error != null:
+return error(_that.errorMsg);case LoadingState() when loading != null:
+return loading();case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-class _$MyApiStateCopyWithImpl<$Res> implements $MyApiStateCopyWith<$Res> {
-  _$MyApiStateCopyWithImpl(this._value, this._then);
 
-  final MyApiState _value;
-  // ignore: unused_field
-  final $Res Function(MyApiState) _then;
+
+class SuccessState implements MyApiState {
+   SuccessState(final  List<String> data): _data = data;
+  
+
+ final  List<String> _data;
+ List<String> get data {
+  if (_data is EqualUnmodifiableListView) return _data;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_data);
+}
+
+
+/// Create a copy of MyApiState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SuccessStateCopyWith<SuccessState> get copyWith => _$SuccessStateCopyWithImpl<SuccessState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SuccessState&&const DeepCollectionEquality().equals(other._data, _data));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data));
+
+@override
+String toString() {
+  return 'MyApiState.success(data: $data)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SuccessStateCopyWith<$Res> {
-  factory $SuccessStateCopyWith(
-          SuccessState value, $Res Function(SuccessState) then) =
-      _$SuccessStateCopyWithImpl<$Res>;
-  $Res call({List<String> data});
-}
+abstract mixin class $SuccessStateCopyWith<$Res> implements $MyApiStateCopyWith<$Res> {
+  factory $SuccessStateCopyWith(SuccessState value, $Res Function(SuccessState) _then) = _$SuccessStateCopyWithImpl;
+@useResult
+$Res call({
+ List<String> data
+});
 
+
+
+
+}
 /// @nodoc
-class _$SuccessStateCopyWithImpl<$Res> extends _$MyApiStateCopyWithImpl<$Res>
+class _$SuccessStateCopyWithImpl<$Res>
     implements $SuccessStateCopyWith<$Res> {
-  _$SuccessStateCopyWithImpl(
-      SuccessState _value, $Res Function(SuccessState) _then)
-      : super(_value, (v) => _then(v as SuccessState));
+  _$SuccessStateCopyWithImpl(this._self, this._then);
 
-  @override
-  SuccessState get _value => super._value as SuccessState;
+  final SuccessState _self;
+  final $Res Function(SuccessState) _then;
 
-  @override
-  $Res call({
-    Object? data = freezed,
-  }) {
-    return _then(SuccessState(
-      data == freezed
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
-  }
+/// Create a copy of MyApiState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? data = null,}) {
+  return _then(SuccessState(
+null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
 }
 
 /// @nodoc
 
-class _$SuccessState implements SuccessState {
-  _$SuccessState(this.data);
 
-  @override
-  final List<String> data;
+class ErrorState implements MyApiState {
+   ErrorState(this.errorMsg);
+  
 
-  @override
-  String toString() {
-    return 'MyApiState.success(data: $data)';
-  }
+ final  String errorMsg;
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is SuccessState &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
-  }
+/// Create a copy of MyApiState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ErrorStateCopyWith<ErrorState> get copyWith => _$ErrorStateCopyWithImpl<ErrorState>(this, _$identity);
 
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
 
-  @JsonKey(ignore: true)
-  @override
-  $SuccessStateCopyWith<SuccessState> get copyWith =>
-      _$SuccessStateCopyWithImpl<SuccessState>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<String> data) success,
-    required TResult Function(String errorMsg) error,
-    required TResult Function() loading,
-  }) {
-    return success(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<String> data)? success,
-    TResult Function(String errorMsg)? error,
-    TResult Function()? loading,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SuccessState value) success,
-    required TResult Function(ErrorState value) error,
-    required TResult Function(LoadingState value) loading,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SuccessState value)? success,
-    TResult Function(ErrorState value)? error,
-    TResult Function(LoadingState value)? loading,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ErrorState&&(identical(other.errorMsg, errorMsg) || other.errorMsg == errorMsg));
 }
 
-abstract class SuccessState implements MyApiState {
-  factory SuccessState(List<String> data) = _$SuccessState;
 
-  List<String> get data => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SuccessStateCopyWith<SuccessState> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,errorMsg);
+
+@override
+String toString() {
+  return 'MyApiState.error(errorMsg: $errorMsg)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ErrorStateCopyWith<$Res> {
-  factory $ErrorStateCopyWith(
-          ErrorState value, $Res Function(ErrorState) then) =
-      _$ErrorStateCopyWithImpl<$Res>;
-  $Res call({String errorMsg});
-}
+abstract mixin class $ErrorStateCopyWith<$Res> implements $MyApiStateCopyWith<$Res> {
+  factory $ErrorStateCopyWith(ErrorState value, $Res Function(ErrorState) _then) = _$ErrorStateCopyWithImpl;
+@useResult
+$Res call({
+ String errorMsg
+});
 
+
+
+
+}
 /// @nodoc
-class _$ErrorStateCopyWithImpl<$Res> extends _$MyApiStateCopyWithImpl<$Res>
+class _$ErrorStateCopyWithImpl<$Res>
     implements $ErrorStateCopyWith<$Res> {
-  _$ErrorStateCopyWithImpl(ErrorState _value, $Res Function(ErrorState) _then)
-      : super(_value, (v) => _then(v as ErrorState));
+  _$ErrorStateCopyWithImpl(this._self, this._then);
 
-  @override
-  ErrorState get _value => super._value as ErrorState;
+  final ErrorState _self;
+  final $Res Function(ErrorState) _then;
 
-  @override
-  $Res call({
-    Object? errorMsg = freezed,
-  }) {
-    return _then(ErrorState(
-      errorMsg == freezed
-          ? _value.errorMsg
-          : errorMsg // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Create a copy of MyApiState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorMsg = null,}) {
+  return _then(ErrorState(
+null == errorMsg ? _self.errorMsg : errorMsg // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc
 
-class _$ErrorState implements ErrorState {
-  _$ErrorState(this.errorMsg);
 
-  @override
-  final String errorMsg;
+class LoadingState implements MyApiState {
+   LoadingState();
+  
 
-  @override
-  String toString() {
-    return 'MyApiState.error(errorMsg: $errorMsg)';
-  }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is ErrorState &&
-            (identical(other.errorMsg, errorMsg) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMsg, errorMsg)));
-  }
 
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMsg);
 
-  @JsonKey(ignore: true)
-  @override
-  $ErrorStateCopyWith<ErrorState> get copyWith =>
-      _$ErrorStateCopyWithImpl<ErrorState>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<String> data) success,
-    required TResult Function(String errorMsg) error,
-    required TResult Function() loading,
-  }) {
-    return error(errorMsg);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<String> data)? success,
-    TResult Function(String errorMsg)? error,
-    TResult Function()? loading,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(errorMsg);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SuccessState value) success,
-    required TResult Function(ErrorState value) error,
-    required TResult Function(LoadingState value) loading,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SuccessState value)? success,
-    TResult Function(ErrorState value)? error,
-    TResult Function(LoadingState value)? loading,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadingState);
 }
 
-abstract class ErrorState implements MyApiState {
-  factory ErrorState(String errorMsg) = _$ErrorState;
 
-  String get errorMsg => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ErrorStateCopyWith<ErrorState> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'MyApiState.loading()';
 }
 
-/// @nodoc
-abstract class $LoadingStateCopyWith<$Res> {
-  factory $LoadingStateCopyWith(
-          LoadingState value, $Res Function(LoadingState) then) =
-      _$LoadingStateCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class _$LoadingStateCopyWithImpl<$Res> extends _$MyApiStateCopyWithImpl<$Res>
-    implements $LoadingStateCopyWith<$Res> {
-  _$LoadingStateCopyWithImpl(
-      LoadingState _value, $Res Function(LoadingState) _then)
-      : super(_value, (v) => _then(v as LoadingState));
 
-  @override
-  LoadingState get _value => super._value as LoadingState;
-}
 
-/// @nodoc
 
-class _$LoadingState implements LoadingState {
-  _$LoadingState();
-
-  @override
-  String toString() {
-    return 'MyApiState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(List<String> data) success,
-    required TResult Function(String errorMsg) error,
-    required TResult Function() loading,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<String> data)? success,
-    TResult Function(String errorMsg)? error,
-    TResult Function()? loading,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SuccessState value) success,
-    required TResult Function(ErrorState value) error,
-    required TResult Function(LoadingState value) loading,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SuccessState value)? success,
-    TResult Function(ErrorState value)? error,
-    TResult Function(LoadingState value)? loading,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadingState implements MyApiState {
-  factory LoadingState() = _$LoadingState;
-}
+// dart format on

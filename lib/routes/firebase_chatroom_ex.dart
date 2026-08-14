@@ -9,7 +9,7 @@ import '../constants.dart';
 
 // NOTE: to add firebase support, first go to firebase console, generate the
 // firebase json file, and add configuration lines in the gradle files.
-// C.f. this commit: https://github.com/X-Wei/flutter_catalog/commit/48792cbc0de62fc47e0e9ba2cd3718117f4d73d1.
+// C.f. the repository: https://github.com/claudneysessa/flutter_catalog.
 class FirebaseChatroomExample extends StatefulWidget {
   const FirebaseChatroomExample({super.key});
 

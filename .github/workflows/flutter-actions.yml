@@ -2,17 +2,29 @@ name: build-app
 
 on:
   workflow_dispatch:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: beta
-    - run: flutter pub get
-    - run: flutter build apk
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.44.6'
+      - run: flutter pub get
+      - run: dart run build_runner build
+      - run: flutter analyze --no-fatal-infos
+      - run: flutter test
+      # The Android build needs a `google-services.json`, which is not committed.
+      - name: Build APK
+        if: ${{ hashFiles('android/app/google-services.json') != '' }}
+        run: flutter build apk --debug

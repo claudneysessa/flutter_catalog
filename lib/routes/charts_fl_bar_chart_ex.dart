@@ -38,8 +38,9 @@ class _FlBarChartExampleState extends State<FlBarChartExample> {
       barGroups: barGroups,
       barTouchData: BarTouchData(
         enabled: true,
+        // ! Since fl_chart 0.66 the tooltip color is a callback.
         touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey,
+          getTooltipColor: (_) => Colors.blueGrey,
         ),
       ),
       // ! Borders:
