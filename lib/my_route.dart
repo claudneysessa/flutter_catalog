@@ -1,6 +1,7 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart' show AdSize;
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
@@ -92,8 +93,10 @@ class MyRoute extends StatelessWidget {
                         debugPrint('Changing to code view!');
                       }
                     },
-                    headerWidget: const MyBannerAd(),
-                    footerWidget: const MyBannerAd(),
+                    // ! Only a thin 320x50 strip at the bottom, instead of the
+                    // ! two adaptive banners that framed the content.
+                    headerWidget: const SizedBox.shrink(),
+                    footerWidget: const MyBannerAd(adSize: AdSize.banner),
                     child: this.child,
                   ),
       ),
@@ -165,6 +168,19 @@ class MyRoute extends StatelessWidget {
                 isDarkModeEnabled: settings.isDarkMode,
                 onStateChanged: (bool value) => settings.setDarkMode(value),
               ),
+            );
+          },
+        ),
+        // ! Lets the user keep the `device_preview` frame around the app, in
+        // ! release builds too.
+        Consumer<MyAppSettings>(
+          builder: (context, MyAppSettings settings, _) {
+            return SwitchListTile(
+              secondary: const Icon(Icons.phone_iphone),
+              title: const Text('Device frame preview'),
+              subtitle: const Text('Show the app inside a device mockup'),
+              value: settings.devicePreviewEnabled,
+              onChanged: settings.setDevicePreviewEnabled,
             );
           },
         ),

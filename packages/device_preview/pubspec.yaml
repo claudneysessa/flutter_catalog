@@ -1,0 +1,35 @@
+name: device_preview
+version: 1.3.1
+description: Approximate how your Flutter app looks and performs on another device.
+homepage: https://github.com/aloisdeniel/flutter_device_preview
+
+publish_to: none
+
+# Vendored copy of device_preview 1.3.1. The only change is the order of the
+# platform tabs in the "Device model" picker (`_allPlatforms` in
+# lib/src/views/tool_panel/sections/subsections/device_model.dart), which is a
+# private const in the upstream package: android / iOS / windows / linux / macOS.
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  provider: ^6.1.2
+  device_frame: ^1.4.0
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+  shared_preferences: ^2.2.3
+  collection: ^1.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.0
+ # freezed: ^2.5.3
+  json_serializable: ^6.9.4

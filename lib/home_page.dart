@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart' show AdSize;
 import 'constants.dart';
 import 'my_app_routes.dart';
 
@@ -87,26 +88,25 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // ! The banner used to sit at the end of each list, where the adaptive size
+    // ! rendered a full 728x90 leaderboard on tablets. It is now a single thin
+    // ! 320x50 strip pinned right above the bottom navigation bar.
     final basicDemos = <Widget>[
       for (final MyRouteGroup group in kMyAppRoutesBasic)
         _myRouteGroupToExpansionTile(group),
-      const MyBannerAd(),
     ];
     final advancedDemos = <Widget>[
       for (final MyRouteGroup group in kMyAppRoutesAdvanced)
         _myRouteGroupToExpansionTile(group),
-      const MyBannerAd(),
     ];
     final inactionDemos = <Widget>[
       for (final MyRouteGroup group in kMyAppRoutesInAction)
         _myRouteGroupToExpansionTile(group),
-      const MyBannerAd(),
     ];
     final bookmarkAndAboutDemos = <Widget>[
       for (final MyRoute route in ref.watch(mySettingsProvider).starredRoutes)
         _myRouteToListTile(route, leading: const Icon(Icons.bookmark)),
       _myRouteToListTile(kAboutRoute, leading: const Icon(Icons.info)),
-      const MyBannerAd(),
     ];
     return Scaffold(
       body: IndexedStack(
@@ -119,13 +119,19 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               controller: _scrollController4, children: bookmarkAndAboutDemos),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _bottmonNavBarItems,
-        currentIndex: ref.watch(mySettingsProvider).currentTabIdx,
-        type: BottomNavigationBarType.shifting,
-        onTap: (int index) {
-          ref.read(mySettingsProvider).currentTabIdx = index;
-        },
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const MyBannerAd(adSize: AdSize.banner),
+          BottomNavigationBar(
+            items: _bottmonNavBarItems,
+            currentIndex: ref.watch(mySettingsProvider).currentTabIdx,
+            type: BottomNavigationBarType.shifting,
+            onTap: (int index) {
+              ref.read(mySettingsProvider).currentTabIdx = index;
+            },
+          ),
+        ],
       ),
     );
   }

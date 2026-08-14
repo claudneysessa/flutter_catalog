@@ -48,7 +48,16 @@ class InlineBannerAdExample extends StatelessWidget {
 /// See https://stackoverflow.com/a/71899578/12421326.
 class MyBannerAdWidget extends StatefulWidget {
   final Widget placeholder;
-  const MyBannerAdWidget({this.placeholder = const SizedBox()});
+
+  /// ! When null, an anchored *adaptive* size is computed from the screen
+  /// ! width — on a tablet that is a 728x90 leaderboard. Pass a fixed size
+  /// ! (e.g. [AdSize.banner]) for a thin strip instead.
+  final AdSize? adSize;
+
+  const MyBannerAdWidget({
+    this.placeholder = const SizedBox(),
+    this.adSize,
+  });
 
   @override
   State<MyBannerAdWidget> createState() => _MyBannerAdWidgetState();
@@ -66,7 +75,7 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
 
   Future<void> _loadAd() async {
     //! Get an AnchoredAdaptiveBannerAdSize before loading the ad.
-    final AnchoredAdaptiveBannerAdSize? size =
+    final AdSize? size = widget.adSize ??
         await AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
             MediaQuery.of(context).size.width.truncate());
 
@@ -112,14 +121,16 @@ class _MyBannerAdWidgetState extends State<MyBannerAdWidget> {
 
 /// ! Hides the banner ad if user purchased the "RemoveAd" item.
 class MyBannerAd extends ConsumerWidget {
-  const MyBannerAd({super.key});
+  final AdSize? adSize;
+
+  const MyBannerAd({super.key, this.adSize});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final adRemoved = ref.watch(adIsRemovedProvider);
     if (adRemoved) {
-      return Container();
+      return const SizedBox.shrink();
     }
-    return MyBannerAdWidget();
+    return MyBannerAdWidget(adSize: adSize);
   }
 }

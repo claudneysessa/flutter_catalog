@@ -27,6 +27,7 @@ dependencies:
   day_night_switcher:
   device_preview:
   device_preview_screenshot:
+  device_frame:
   english_words:
   extended_image:
   feature_discovery:
@@ -101,6 +102,14 @@ dependencies:
   video_player:
   widget_with_codeview:
   youtube_player_iframe:
+
+# ! `device_preview` is vendored under packages/ so that the platform tabs of
+# ! the "Device model" picker follow the order android / iOS / windows / linux /
+# ! macOS (`_allPlatforms` is a private const upstream). An override is needed
+# ! because `device_preview_screenshot` depends on it too.
+dependency_overrides:
+  device_preview:
+    path: packages/device_preview
 
 dev_dependencies:
   flutter_test:

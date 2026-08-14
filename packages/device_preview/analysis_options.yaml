@@ -1,0 +1,9 @@
+# Vendored third-party code: keep the upstream analysis settings instead of
+# inheriting this app's stricter ones (the app enables `strict-casts`, which the
+# upstream sources were never written against).
+analyzer:
+  language:
+    strict-casts: false
+    strict-raw-types: false
+  errors:
+    deprecated_member_use: ignore

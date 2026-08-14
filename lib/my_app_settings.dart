@@ -52,6 +52,18 @@ class MyAppSettings extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Whether the app is wrapped in the `device_preview` device frame. It used to
+  // be debug-only; it is now a user setting, on by default.
+  static const _kDevicePreviewKey = 'DEVICE_PREVIEW';
+  bool get devicePreviewEnabled =>
+      _pref.getBool(_kDevicePreviewKey) ?? true;
+
+  // ignore:avoid_positional_boolean_parameters
+  void setDevicePreviewEnabled(bool val) {
+    _pref.setBool(_kDevicePreviewKey, val);
+    notifyListeners();
+  }
+
   /// The list of route names in search history.
   static const _kSearchHistoryPreferenceKey = 'SEARCH_HISTORY';
   List<String> get searchHistory =>
